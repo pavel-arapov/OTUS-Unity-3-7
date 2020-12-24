@@ -35,12 +35,12 @@ public class GeneratedBlock: Block
         for (int y = 0; y < Height; y++) {
             for (int x = 0; x < Width; x++) {
                 // have to generate bricks taking into account the passes we have
-                if (y == 0 && up && x > 3 && x < 6) {
+                if (y == 0 && down && x > 3 && x < 6) {
                     result.SetWall(x, y, false);
                     continue;
                 }
 
-                if (y == Height - 1 && down && x > 3 && x < 6) {
+                if (y == Height - 1 && up && x > 3 && x < 6) {
                     result.SetWall(x, y, false);
                     continue;
                 }
@@ -50,7 +50,7 @@ public class GeneratedBlock: Block
                     continue;
                 }
 
-                if (x == Width - 1 && right && y > 3 && y > 6) {
+                if (x == Width - 1 && right && y > 3 && y < 6) {
                     result.SetWall(x, y, false);
                     continue;
                 }

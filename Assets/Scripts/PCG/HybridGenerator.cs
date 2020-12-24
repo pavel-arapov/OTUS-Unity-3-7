@@ -24,11 +24,12 @@ public class HybridGenerator : AbstractGenerator
 
     public Transform character;
     public Transform generatedBlocks;
+    public Transform generatedElements;
 
     void PutBlock(int blockX, int blockY, Block block) {
         Map blockMap = block.GetMap();
         map.PutMap(blockX * Block.Width, blockY * Block.Height, blockMap, blockMap.rect);
-        block.SetGameObjects(tilemap, blockX * Block.Width, blockY * Block.Height);
+        block.SetGameObjects(tilemap, blockX * Block.Width, blockY * Block.Height, generatedElements);
     }
 
     void SetPosition(Transform transform, int blockX, int blockY, Vector3 posInBlock) {
@@ -55,16 +56,16 @@ public class HybridGenerator : AbstractGenerator
      */
     Block GetRandomBlockMatchingMask(Block[] blocks, int requirePresent, int requireAbsent) {
         var rand = Random.Range(0, 2);
-        // if (rand == 1) {
-            // GameObject gameObject = new GameObject("GeneratedBlock");
-            // var block = gameObject.AddComponent<GeneratedBlock>();
-            // block.transform.parent = generatedBlocks;
-            // block.SetBitmask(requirePresent);
-            // return block;
-        // }
-        // else {
+        if (rand == 1) {
+            GameObject gameObject = new GameObject("GeneratedBlock");
+            var block = gameObject.AddComponent<GeneratedBlock>();
+            block.transform.parent = generatedBlocks;
+            block.SetBitmask(requirePresent);
+            return block;
+        }
+        else {
             return GetRandomPredefinedBlockMatchingMask(blocks, requirePresent, requireAbsent);
-        // }
+        }
     }
 
     static Block GetRandomPredefinedBlockMatchingMask(Block[] blocks, int requirePresent, int requireAbsent) {

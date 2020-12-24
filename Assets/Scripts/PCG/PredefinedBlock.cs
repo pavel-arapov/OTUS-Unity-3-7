@@ -20,7 +20,7 @@ public class PredefinedBlock : Block
         return result;
     }
 
-    public override void SetGameObjects(Tilemap mainTilemap, int blockX, int blockY) {
+    public override void SetGameObjects(Tilemap mainTilemap, int blockX, int blockY, Transform rootObject) {
         var tilemap = GetComponentInChildren<Tilemap>();
         foreach (GameObject t in elements) {
             GameObject go = Instantiate(t);

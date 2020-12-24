@@ -49,6 +49,6 @@ public class Block : MonoBehaviour
         return null;
     }
 
-    public virtual void SetGameObjects(Tilemap mainTilemap, int blockX, int blockY) {
+    public virtual void SetGameObjects(Tilemap mainTilemap, int blockX, int blockY, Transform rootObject) {
     }
 }
